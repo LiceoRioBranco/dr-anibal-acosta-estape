@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comunicados Oficiales - Liceo Dr. Aníbal Acosta Estapé</title>
+  <style>
+    :root {
+      --rojo-principal: #c41e3a;
+      --rojo-oscuro: #a0172e;
+      --gris-claro: #f8f9fa;
+      --texto: #333;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fff;
+      color: var(--texto);
+      line-height: 1.6;
+    }
+    
+    header {
+      background: var(--rojo-principal);
+      color: white;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .logo-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo-img {
+      height: 120px;
+      width: auto;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      font-weight: normal;
+      opacity: 0.95;
+    }
+    
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+    
+    .calendarios {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      margin-top: 10px;
+    }
+    
+    .calendario-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      border-top: 7px solid var(--rojo-principal);
+    }
+    
+    .card-header {
+      background: var(--rojo-principal);
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    
+    .card-body {
+      padding: 18px;
+    }
+    
+    .table-responsive {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    table {
+      width: 100%;
+      min-width: 300px;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 12px 8px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      font-size: 0.95rem;
+    }
+    
+    th {
+      background: var(--gris-claro);
+      color: var(--rojo-oscuro);
+      font-weight: 600;
+    }
+
+    .botones-inscripcion {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin: 50px auto 40px;
+      max-width: 700px;
+    }
+    
+    .btn-inscripcion {
+      display: block;
+      background: var(--rojo-principal);
+      color: white;
+      text-align: center;
+      padding: 18px 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 6px 15px rgba(196,30,58,0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-inscripcion:hover {
+      background: var(--rojo-oscuro);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(196,30,58,0.4);
+    }
+    
+    .btn-inscripcion:active {
+      transform: translateY(0);
+    }
+    
+    footer {
+      background: var(--rojo-oscuro);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+    
+    @media (min-width: 600px) {
+      .logo-container { flex-direction: row; justify-content: center; gap: 25px; }
+      .logo-img { height: 140px; }
+      h1 { font-size: 2.4rem; }
+      .botones-inscripcion { grid-template-columns: 1fr 1fr; }
+    }
+    
+    @media (min-width: 900px) {
+      .calendarios { grid-template-columns: repeat(3, 1fr); }
+      .logo-img { height: 160px; }
+    }
+    
+    @media (max-width: 380px) {
+      h1 { font-size: 1.8rem; }
+      .logo-img { height: 100px; }
+      .btn-inscripcion { font-size: 1rem; padding: 16px; }
+    }
+
+  </style>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Logo Liceo Dr. Aníbal Acosta Estapé" class="logo-img">
+      <div>
+        <h1>Liceo Dr. Aníbal Acosta Estapé</h1>
+        <p class="subtitle">Comunicados Oficiales y Calendario Académico</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="calendarios">
+      
+      <div class="calendario-card">
+        <div class="card-header">Calendario de APE 2025-2026</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table>
+              <tr><th>Fecha</th><th>APE</th></tr>
+              <tr><td>1 al 12 dic 2025</td><td>Primer período APE</td></tr>
+              <tr><td>10 al 14 feb 2026</td><td>Segundo período APE</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="calendario-card">
+        <div class="card-header">Calendario de Inscripciones 2026</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table>
+              <tr><th>Período</th><th>Actividad</th></tr>
+              <tr><td>3 al 14 feb 2026</td><td>Reinscripción alumnos regulares</td></tr>
+              <tr><td>17 al 28 feb 2026</td><td>Inscripción nuevos alumnos</td></tr>
+              <tr><td>2 al 6 mar 2026</td><td>Inscripción condicionales y rezagados</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="calendario-card">
+        <div class="card-header">Entrega de Notas 2025-2026</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table>
+              <tr><th>Fecha</th><th>Actividad</th></tr>
+              <tr><td>22 dic 2025</td><td>Notas 1er Trimestre</td></tr>
+              <tr><td>20 mar 2026</td><td>Notas 2do Trimestre</td></tr>
+              <tr><td>25 jun 2026</td><td>Notas finales</td></tr>
+              <tr><td>10 jul 2026</td><td>Notas recuperatorios</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+    <div class="botones-inscripcion">
+      <a href="https://forms.gle/tu-link-aqui" target="_blank" class="btn-inscripcion">
+        Inscripción 7° Año EBI
+      </a>
+      <a href="https://forms.gle/tu-link-aqui" target="_blank" class="btn-inscripcion">
+        Inscripción 1° Año EMS
+      </a>
+      <a href="https://forms.gle/tu-link-reinscripcion-8" target="_blank" class="btn-inscripcion">
+        Reinscripción 8° Año EBI
+      </a>
+      <a href="https://forms.gle/tu-link-9ano" target="_blank" class="btn-inscripcion">
+        Reinscripción 9° Año EBI
+      </a>
+    </div>
+  </main>
+
+  <footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <h3>Sitio oficial de comunicados y calendarios académicos</h3>
+      
+      <div class="footer-contacto">
+        <p><strong>Dirección:</strong> Vapor Cebollati, Río Branco - Cerro Largo</p>
+        <p><strong>Teléfonos:</strong> 4675 4191 <span class="sep">•</span> 091 028 993 <span class="sep">•</span class="sep"></span> 099 367 158</p>
+        <p><strong>Email:</strong> liceoanibalacostaestape@gmail.com</p>
+      </div>
+      
+      <p class="copyright">
+        © 2025 Liceo Dr. Aníbal Acosta Estapé • Todos los derechos reservados
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
