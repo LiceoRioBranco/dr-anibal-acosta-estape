@@ -151,46 +151,6 @@ fetch("https://script.google.com/macros/s/AKfycbytwm5RB_ECqtBmWx1F3zKqakOkALUmk9
 })
 .then(() => {
   alert("Inscripción registrada correctamente");
-});
-  const nombre = document.getElementById('nombre').value.trim();
-  const cedula = document.getElementById('cedula').value.trim();
-  const fecha = document.getElementById('fecha').value;
-  const hora = document.getElementById('hora').value;
-
-  if(!nombre || !cedula || !fecha){
-    alert('Debe completar todos los campos');
-    return;
-  }
-
-  // Obtener turnos ya ocupados
-  let turnos = JSON.parse(localStorage.getItem('turnosOcupados7EBI')) || [];
-  const turnoActual = fecha + ' ' + hora;
-
-  if(turnos.includes(turnoActual)){
-    alert('❌ Ese horario ya fue reservado. Por favor elija otro.');
-    return;
-  }
-
-  // Guardar turno
-  turnos.push(turnoActual);
-  localStorage.setItem('turnosOcupados7EBI', JSON.stringify(turnos));
-
-  document.getElementById('resultado').innerHTML =
-    `<strong>Solicitud registrada</strong><br><br>
-     Nombre: ${nombre}<br>
-     Cédula: ${cedula}<br>
-     Fecha: ${fecha}<br>
-     Hora: ${hora}<br><br>
-     Preséntese en el horario indicado.`;
-}
-
-  document.getElementById('resultado').innerHTML =
-    `<strong>Solicitud registrada</strong><br><br>
-     Nombre: ${nombre}<br>
-     Cédula: ${cedula}<br>
-     Fecha: ${fecha}<br>
-     Hora: ${hora}<br><br>
-     Preséntese en el horario indicado.`;
 </script>
 
 </body>
