@@ -99,7 +99,7 @@ button:hover{background:#a0172e;}
   <input type="text" id="nombre" placeholder="Ej: Ana Pérez" required>
 
   <label>Cédula de Identidad</label>
-  <input type="text" id="cedula" placeholder="Ej: 51234567" required>
+  <input type="text" id="cedula" placeholder="Ej: 5.123.456-7" required>
 
   <label>Fecha de atención</label>
   <input type="date" id="fecha" required min="2026-02-12" max="2026-02-17">
@@ -107,29 +107,21 @@ button:hover{background:#a0172e;}
   <label>Hora</label>
   <select id="hora">
     <option>08:00</option>
-    <option>08:10</option>
-    <option>08:20</option>
+    <option>08:15</option>
     <option>08:30</option>
-    <option>08:40</option>
-    <option>08:50</option>
+    <option>08:45</option>
     <option>09:00</option>
-    <option>09:10</option>
-    <option>09:20</option>
+    <option>09:15</option>
     <option>09:30</option>
-    <option>09:40</option>
-    <option>09:50</option>
+    <option>09:45</option>
     <option>10:00</option>
-    <option>10:10</option>
-    <option>10:20</option>
+    <option>10:15</option>
     <option>10:30</option>
-    <option>10:40</option>
-    <option>10:50</option>
+    <option>10:45</option>
     <option>11:00</option>
-    <option>11:10</option>
-    <option>11:20</option>
+    <option>11:15</option>
     <option>11:30</option>
-    <option>11:40</option>
-    <option>11:50</option>
+    <option>11:45</option>
     <option>12:00</option>
   </select>
 
@@ -150,7 +142,6 @@ function confirmar(){
     return;
   }
 
-  // Obtener turnos ya ocupados
   let turnos = JSON.parse(localStorage.getItem('turnosOcupados7EBI')) || [];
   const turnoActual = fecha + ' ' + hora;
 
@@ -159,26 +150,14 @@ function confirmar(){
     return;
   }
 
-  // Guardar turno
   turnos.push(turnoActual);
   localStorage.setItem('turnosOcupados7EBI', JSON.stringify(turnos));
 
-  document.getElementById('resultado').innerHTML =
-    `<strong>Solicitud registrada</strong><br><br>
-     Nombre: ${nombre}<br>
-     Cédula: ${cedula}<br>
-     Fecha: ${fecha}<br>
-     Hora: ${hora}<br><br>
-     Preséntese en el horario indicado.`;
-}
+  const datos = { nombre, cedula, fecha, hora };
+  localStorage.setItem('datosInscripcion7EBI', JSON.stringify(datos));
 
-  document.getElementById('resultado').innerHTML =
-    `<strong>Solicitud registrada</strong><br><br>
-     Nombre: ${nombre}<br>
-     Cédula: ${cedula}<br>
-     Fecha: ${fecha}<br>
-     Hora: ${hora}<br><br>
-     Preséntese en el horario indicado.`;
+  window.location.href = 'comprobante.html';
+}
 </script>
 
 </body>

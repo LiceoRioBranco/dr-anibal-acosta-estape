@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Comprobante de Inscripción</title>
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f4f4;
+  padding:20px;
+}
+.container{
+  max-width:520px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+h1{text-align:center;color:#c41e3a;}
+.dato{
+  margin:10px 0;
+  font-size:1rem;
+}
+button{
+  margin-top:25px;
+  width:100%;
+  padding:14px;
+  font-size:1rem;
+  font-weight:bold;
+  background:#555;
+  color:white;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+button:hover{background:#333;}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Comprobante de Inscripción</h1>
+
+  <div id="datos"></div>
+
+  <button onclick="imprimir()">Imprimir comprobante</button>
+</div>
+
+<script>
+const datos = JSON.parse(localStorage.getItem('datosInscripcion7EBI'));
+
+if(!datos){
+  window.location.href = 'index.html';
+}
+
+document.getElementById('datos').innerHTML = `
+  <div class="dato"><strong>Nombre:</strong> ${datos.nombre}</div>
+  <div class="dato"><strong>Cédula:</strong> ${datos.cedula}</div>
+  <div class="dato"><strong>Fecha:</strong> ${datos.fecha}</div>
+  <div class="dato"><strong>Hora:</strong> ${datos.hora}</div>
+`;
+
+function imprimir(){
+  window.print();
+}
+</script>
+
+</body>
+</html>
