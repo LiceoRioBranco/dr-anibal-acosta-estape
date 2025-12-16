@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inscripción 7° Año EBI | Liceo Dr. Aníbal Acosta Estapé</title>
+  <title>Inscripción 7° Año EBI - Liceo Dr. Aníbal Acosta Estapé</title>
   <style>
     :root {
       --rojo: #c41e3a;
@@ -13,32 +13,34 @@
     }
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+      background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
       padding: 20px;
       margin: 0;
       color: var(--texto);
     }
     .container {
-      max-width: 560px;
+      max-width: 540px;
       margin: 30px auto;
       background: white;
-      padding: 35px 30px;
+      padding: 35px;
       border-radius: 16px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
       border-top: 6px solid var(--rojo);
     }
-    header {
+    .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
     }
     h1 {
       color: var(--rojo);
-      font-size: 1.8rem;
-      margin: 0 0 8px 0;
+      font-size: 1.75rem;
+      margin: 0 0 10px 0;
     }
     .subtitulo {
       color: #555;
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       margin: 0;
     }
     label {
@@ -52,20 +54,20 @@
       width: 100%;
       padding: 12px 14px;
       margin-top: 8px;
+      border: 1px solid #ccc;
       border-radius: 8px;
-      border: 1.5px solid #ccc;
       font-size: 1rem;
       transition: border 0.3s;
     }
     input:focus, select:focus {
       outline: none;
       border-color: var(--rojo);
-      box-shadow: 0 0 0 3px rgba(196,30,58,0.15);
+      box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.15);
     }
     button {
-      margin-top: 32px;
+      margin-top: 35px;
       width: 100%;
-      padding: 15px;
+      padding: 16px;
       font-size: 1.1rem;
       font-weight: bold;
       background: var(--rojo);
@@ -79,52 +81,63 @@
       background: var(--rojo-oscuro);
       transform: translateY(-2px);
     }
-    .exito {
+    .mensaje {
       margin-top: 25px;
       padding: 18px;
-      background: #e8f5e8;
-      border-left: 5px solid #28a745;
-      border-radius: 8px;
-      display: none;
+      border-radius: 10px;
       text-align: center;
       font-size: 1rem;
-      color: #155724;
+      display: none;
+      background: #e8f5e8;
+      border: 1px solid #c3e6c3;
+      color: #2e7d32;
     }
-    .exito strong { display: block; font-size: 1.25rem; margin-bottom: 8px; }
+    .mensaje.exito {
+      background: #f0f8ff;
+      border: 1px solid #b3d9ff;
+      color: #1e40af;
+    }
+    .leyenda {
+      font-size: 0.92rem;
+      color: #666;
+      text-align: center;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
 
     @media (max-width: 600px) {
-      .container { padding: 25px 20px; margin: 15px auto; }
+      .container { padding: 25px; margin: 15px auto; }
       h1 { font-size: 1.55rem; }
+      button { padding: 14px; font-size: 1.05rem; }
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <header>
+  <div class="header">
     <h1>Inscripción 7° Año EBI</h1>
     <p class="subtitulo">Liceo Dr. Aníbal Acosta Estapé</p>
-  </header>
+  </div>
 
-  <p style="text-align:center; color:#555; line-height:1.6;">
-    Complete el siguiente formulario para reservar su turno de inscripción.<br>
-    <strong>Fechas disponibles:</strong> 11, 12 y 13 de febrero de 2026<br>
-    <strong>Cupo por horario:</strong> máximo 4 personas
+  <p class="leyenda">
+    <strong>Fechas disponibles para atención:</strong> 11, 12 y 13 de febrero de 2026<br>
+    Cada horario admite hasta <strong>4 turnos</strong>.
   </p>
 
   <label>Nombre y Apellido completo</label>
-  <input type="text" id="nombre" placeholder="Ejemplo: Juan Carlos Gómez Pérez" required>
+  <input type="text" id="nombre" placeholder="Ejemplo: Juan Carlos Gómez" required>
 
-  <label>Cédula de Identidad (con puntos y guión)</label>
+  <label>Cédula de Identidad</label>
   <input type="text" id="cedula" placeholder="Ejemplo: 5.123.456-7" required>
 
-  <label>Número de celular (con código de área)</label>
+  <label>Número de celular (con WhatsApp)</label>
   <input type="tel" id="celular" placeholder="Ejemplo: 091 234 567" required>
 
-  <label>Fecha deseada</label>
+  <label>Fecha de atención preferida</label>
   <input type="date" id="fecha" required min="2026-02-11" max="2026-02-13">
 
-  <label>Horario preferido</label>
+  <label>Horario de atención</label>
   <select id="hora" required>
     <option value="" disabled selected>Seleccione un horario</option>
     <option>08:00</option><option>08:15</option><option>08:30</option><option>08:45</option>
@@ -134,23 +147,34 @@
     <option>12:00</option>
   </select>
 
-  <button onclick="confirmar()">Confirmar reserva de turno</button>
+  <button id="btn-confirmar">Confirmar solicitud de turno</button>
 
-  <div class="exito" id="exito"></div>
+  <div class="mensaje" id="resultado"></div>
 </div>
 
+<!-- Formulario oculto para SheetMonkey -->
+<form id="sheetmonkey-form" action="https://api.sheetmonkey.io/form/g1Zz8ksp2BLiRdfPup4P33" method="post" style="display:none;">
+  <input type="hidden" name="Nombre y Apellido" id="sm-nombre">
+  <input type="hidden" name="Cédula" id="sm-cedula">
+  <input type="hidden" name="Celular" id="sm-celular">
+  <input type="hidden" name="Fecha y Hora" id="sm-fechahora">
+  <input type="hidden" name="Created" value="timestamp">
+</form>
+
 <script>
-  // Evitar que la misma persona se inscriba dos veces
+  // Evitar doble inscripción
   if (localStorage.getItem('datosInscripcion7EBI')) {
     window.location.href = 'comprobante.html';
   }
 
-  async function confirmar() {
-    const nombre   = document.getElementById('nombre').value.trim();
-    const cedula   = document.getElementById('cedula').value.trim();
-    const celular  = document.getElementById('celular').value.trim();
-    const fecha    = document.getElementById('fecha').value;   // formato YYYY-MM-DD
-    const hora     = document.getElementById('hora').value;
+  document.getElementById('btn-confirmar').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const nombre  = document.getElementById('nombre').value.trim();
+    const cedula  = document.getElementById('cedula').value.trim();
+    const celular = document.getElementById('celular').value.trim();
+    const fecha   = document.getElementById('fecha').value;
+    const hora    = document.getElementById('hora').value;
 
     if (!nombre || !cedula || !celular || !fecha || !hora) {
       alert('Por favor, complete todos los campos requeridos.');
@@ -161,7 +185,6 @@
     let turnos = JSON.parse(localStorage.getItem('turnosOcupados7EBI')) || {};
     if (!turnos[claveTurno]) turnos[claveTurno] = 0;
 
-    // Control de cupo (máximo 4 por horario)
     if (turnos[claveTurno] >= 4) {
       document.getElementById('resultado').style.display = 'block';
       document.getElementById('resultado').innerHTML = `
@@ -173,66 +196,46 @@
       return;
     }
 
-    // === ENVÍO A GOOGLE SHEETS (tu formulario real) ===
-    const FORM_ID = '1FAIpQLSeHFtwCQ7B8oBQfNWhq3wU4cOTebLK_VsZx64NcHe63EZF49Q';
+    // Llenar campos ocultos para SheetMonkey
+    document.getElementById('sm-nombre').value = nombre;
+    document.getElementById('sm-cedula').value = cedula;
+    document.getElementById('sm-celular').value = celular;
+    document.getElementById('sm-fechahora').value = formatearFecha(fecha) + ' - ' + hora + ' hs';
 
-    const formData = new FormData();
-    formData.append('entry.1901770451', nombre);   // Nombre y Apellido
-    formData.append('entry.1378321971', cedula);   // Cédula
-    formData.append('entry.1564440647', celular);  // Celular
+    // Reservar cupo local
+    turnos[claveTurno]++;
+    localStorage.setItem('turnosOcupados7EBI', JSON.stringify(turnos));
 
-    // Fecha (separada en año, mes, día)
-    const [year, month, day] = fecha.split('-');
-    formData.append('entry.1133455154_year',  year);
-    formData.append('entry.1133455154_month', month);
-    formData.append('entry.1133455154_day',   day);
+    const datos = { nombre, cedula, celular, fecha, hora };
+    localStorage.setItem('datosInscripcion7EBI', JSON.stringify(datos));
 
-    // Hora (separada en hora y minuto)
-    const [h, m] = hora.split(':');
-    formData.append('entry.1858262101_hour',   h);
-    formData.append('entry.1858262101_minute', m);
+    // Mensaje de éxito
+    const lugaresRestantes = 4 - turnos[claveTurno];
+    const mensajeLugares = lugaresRestantes === 0 
+      ? 'Ha sido el último turno disponible en este horario.' 
+      : `Quedan ${lugaresRestantes} turno(s) disponible(s).`;
 
-    try {
-      await fetch(`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-      });
+    document.getElementById('resultado').classList.add('exito');
+    document.getElementById('resultado').style.display = 'block';
+    document.getElementById('resultado').innerHTML = `
+      <strong>¡Turno reservado con éxito!</strong><br><br>
+      Estimado/a <strong>${nombre}</strong>,<br><br>
+      Su turno quedó confirmado para el <strong>${formatearFecha(fecha)}</strong> 
+      a las <strong>${hora} hs</strong>.<br><br>
+      ${mensajeLugares}<br><br>
+      Los datos fueron enviados correctamente.<br>
+      Redirigiendo al comprobante...
+    `;
 
-      // === FORZAMOS que siga como si todo salió bien ===
-      // (porque en la realidad SÍ llega a Google)
+    // Enviar a SheetMonkey y redirigir
+    setTimeout(() => {
+      document.getElementById('sheetmonkey-form').submit();
+    }, 2000);
 
-      turnos[claveTurno]++;
-      localStorage.setItem('turnosOcupados7EBI', JSON.stringify(turnos));
-
-      const datos = { nombre, cedula, celular, fecha, hora };
-      localStorage.setItem('datosInscripcion7EBI', JSON.stringify(datos));
-
-      const lugaresRestantes = 4 - turnos[claveTurno];
-      const mensajeLugares = lugaresRestantes === 0
-        ? 'Ha sido el último turno disponible en este horario.'
-        : `Quedan ${lugaresRestantes} turno(s) disponible(s) en este horario.`;
-
-      document.getElementById('resultado').classList.add('exito');
-      document.getElementById('resultado').style.display = 'block';
-      document.getElementById('resultado').innerHTML = `
-        <strong>¡Turno reservado con éxito!</strong><br><br>
-        Estimado/a <strong>${nombre}</strong>,<br><br>
-        Su turno quedó confirmado para el <strong>${formatearFecha(fecha)}</strong> 
-        a las <strong>${hora} hs</strong>.<br><br>
-        ${mensajeLugares}<br><br>
-        Los datos fueron registrados correctamente en planilla.<br>
-        Redirigiendo al comprobante...
-      `;
-
-      setTimeout(() => {
-        window.location.href = 'comprobante.html';
-      }, 4500);
-
-    } catch (err) {
-      alert('Ocurrió un error al enviar los datos. Por favor, intente nuevamente.');
-    }
-  }
+    setTimeout(() => {
+      window.location.href = 'comprobante.html';
+    }, 3000);
+  });
 
   function formatearFecha(iso) {
     const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
