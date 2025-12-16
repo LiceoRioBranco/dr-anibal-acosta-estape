@@ -117,19 +117,19 @@
 
   <p class="leyenda">
     <strong>Fechas disponibles para atención:</strong> 11, 12 y 13 de febrero de 2026<br>
-    Cada horario admite hasta <strong>4 turnos</strong>.
+    Cada horario admite hasta <strong>4 cupos</strong>, en caso de no haber disponibilidad, seleccione otro horario.
   </p>
 
   <label>Nombre y Apellido completo</label>
   <input type="text" id="nombre" placeholder="Ejemplo: Juan Carlos Gómez" required>
 
-  <label>Cédula de Identidad</label>
-  <input type="text" id="cedula" placeholder="Ejemplo: 5.123.456-7" required>
+  <label>Cédula de Identidad(sin comas ni guiones)</label>
+  <input type="text" id="cedula" placeholder="Ejemplo: 51234567" required>
 
-  <label>Número de celular (con WhatsApp)</label>
-  <input type="tel" id="celular" placeholder="Ejemplo: 091 234 567" required>
+  <label>Número de contacto</label>
+  <input type="tel" id="celular" placeholder="Ejemplo: 091234567" required>
 
-  <label>Fecha de atención preferida</label>
+  <label>Fecha de atención</label>
   <input type="date" id="fecha" required min="2026-02-11" max="2026-02-13">
 
   <label>Horario de atención</label>
@@ -142,28 +142,13 @@
     <option>12:00</option>
   </select>
 
-  <button id="btn-confirmar">Confirmar solicitud de turno</button>
+  <button id="btn-confirmar">Confirmar</button>
 
   <div class="mensaje" id="resultado"></div>
 </div>
 
-<!-- Formulario oculto que envía al Google Apps Script -->
-<form id="appscript-form" 
-      action="https://script.google.com/macros/s/AKfycbw5rTNzEqiDNRTsWdfuEQSMc5bPvkR3q2usVRwk_V_AEIQkM6uISrxCY6LGWUXDZKTFrA/exec" 
-      method="post" 
-      target="hidden-iframe" 
-      style="display:none;">
-  <input type="hidden" name="nombre" id="as-nombre">
-  <input type="hidden" name="cedula" id="as-cedula">
-  <input type="hidden" name="celular" id="as-celular">
-  <input type="hidden" name="fechaHora" id="as-fechahora">
-</form>
-
-<!-- iframe oculto para evitar recarga de página -->
-<iframe name="hidden-iframe" style="display:none;"></iframe>
-
 <script>
-  // Evitar doble inscripción
+  // Evitar que la misma persona se inscriba dos veces (en el mismo navegador)
   if (localStorage.getItem('datosInscripcion7EBI')) {
     window.location.href = 'comprobante.html';
   }
@@ -197,16 +182,11 @@
       return;
     }
 
-    // Llenar campos para enviar al Apps Script
-    document.getElementById('as-nombre').value = nombre;
-    document.getElementById('as-cedula').value = cedula;
-    document.getElementById('as-celular').value = celular;
-    document.getElementById('as-fechahora').value = formatearFecha(fecha) + ' - ' + hora + ' hs';
-
-    // Reservar cupo localmente
+    // Reservar el turno
     turnos[claveTurno]++;
     localStorage.setItem('turnosOcupados7EBI', JSON.stringify(turnos));
 
+    // Guardar datos para el comprobante
     const datos = { nombre, cedula, celular, fecha, hora };
     localStorage.setItem('datosInscripcion7EBI', JSON.stringify(datos));
 
@@ -223,16 +203,10 @@
       Su turno quedó confirmado para el <strong>${formatearFecha(fecha)}</strong> 
       a las <strong>${hora} hs</strong>.<br><br>
       ${mensajeLugares}<br><br>
-      Los datos fueron enviados correctamente.<br>
-      Redirigiendo al comprobante...
+      En breve será redirigido al comprobante...
     `;
 
-    // Enviar al Google Apps Script
-    setTimeout(() => {
-      document.getElementById('appscript-form').submit();
-    }, 1500);
-
-    // Redirigir al comprobante
+    // Redirigir al comprobante después de 3 segundos
     setTimeout(() => {
       window.location.href = 'comprobante.html';
     }, 3000);
