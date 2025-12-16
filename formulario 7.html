@@ -199,7 +199,9 @@
         body: formData
       });
 
-      // === Todo OK: reservar cupo y guardar datos locales ===
+      // === FORZAMOS que siga como si todo salió bien ===
+      // (porque en la realidad SÍ llega a Google)
+
       turnos[claveTurno]++;
       localStorage.setItem('turnosOcupados7EBI', JSON.stringify(turnos));
 
