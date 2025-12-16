@@ -149,7 +149,7 @@
 
 <!-- Formulario oculto que envía al Google Apps Script -->
 <form id="appscript-form" 
-      action="https://script.google.com/macros/s/AKfycbzpz59QcTKZfVN9Gz8WAdaUcIWpdn2duXeK9gmAouOt3Fhdm1NOp1LjavBMCg7wE59H/exec" 
+      action="https://script.google.com/macros/s/AKfycbw5rTNzEqiDNRTsWdfuEQSMc5bPvkR3q2usVRwk_V_AEIQkM6uISrxCY6LGWUXDZKTFrA/exec" 
       method="post" 
       target="hidden-iframe" 
       style="display:none;">
@@ -159,7 +159,7 @@
   <input type="hidden" name="fechaHora" id="as-fechahora">
 </form>
 
-<!-- iframe oculto para que el submit no recargue la página -->
+<!-- iframe oculto para evitar recarga de página -->
 <iframe name="hidden-iframe" style="display:none;"></iframe>
 
 <script>
@@ -227,7 +227,7 @@
       Redirigiendo al comprobante...
     `;
 
-    // Enviar al Google Apps Script (sin recargar página gracias al iframe)
+    // Enviar al Google Apps Script
     setTimeout(() => {
       document.getElementById('appscript-form').submit();
     }, 1500);
