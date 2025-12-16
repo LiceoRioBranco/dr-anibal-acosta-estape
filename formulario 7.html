@@ -88,11 +88,6 @@
       text-align: center;
       font-size: 1rem;
       display: none;
-      background: #e8f5e8;
-      border: 1px solid #c3e6c3;
-      color: #2e7d32;
-    }
-    .mensaje.exito {
       background: #f0f8ff;
       border: 1px solid #b3d9ff;
       color: #1e40af;
@@ -152,14 +147,20 @@
   <div class="mensaje" id="resultado"></div>
 </div>
 
-<!-- Formulario oculto para SheetMonkey -->
-<form id="sheetmonkey-form" action="https://api.sheetmonkey.io/form/g1Zz8ksp2BLiRdfPup4P33" method="post" style="display:none;">
-  <input type="hidden" name="Nombre y Apellido" id="sm-nombre">
-  <input type="hidden" name="Cédula" id="sm-cedula">
-  <input type="hidden" name="Celular" id="sm-celular">
-  <input type="hidden" name="Fecha y Hora" id="sm-fechahora">
-  <input type="hidden" name="Created" value="timestamp">
+<!-- Formulario oculto que envía al Google Apps Script -->
+<form id="appscript-form" 
+      action="https://script.google.com/macros/s/AKfycbzpz59QcTKZfVN9Gz8WAdaUcIWpdn2duXeK9gmAouOt3Fhdm1NOp1LjavBMCg7wE59H/exec" 
+      method="post" 
+      target="hidden-iframe" 
+      style="display:none;">
+  <input type="hidden" name="nombre" id="as-nombre">
+  <input type="hidden" name="cedula" id="as-cedula">
+  <input type="hidden" name="celular" id="as-celular">
+  <input type="hidden" name="fechaHora" id="as-fechahora">
 </form>
+
+<!-- iframe oculto para que el submit no recargue la página -->
+<iframe name="hidden-iframe" style="display:none;"></iframe>
 
 <script>
   // Evitar doble inscripción
@@ -196,13 +197,13 @@
       return;
     }
 
-    // Llenar campos ocultos para SheetMonkey
-    document.getElementById('sm-nombre').value = nombre;
-    document.getElementById('sm-cedula').value = cedula;
-    document.getElementById('sm-celular').value = celular;
-    document.getElementById('sm-fechahora').value = formatearFecha(fecha) + ' - ' + hora + ' hs';
+    // Llenar campos para enviar al Apps Script
+    document.getElementById('as-nombre').value = nombre;
+    document.getElementById('as-cedula').value = cedula;
+    document.getElementById('as-celular').value = celular;
+    document.getElementById('as-fechahora').value = formatearFecha(fecha) + ' - ' + hora + ' hs';
 
-    // Reservar cupo local
+    // Reservar cupo localmente
     turnos[claveTurno]++;
     localStorage.setItem('turnosOcupados7EBI', JSON.stringify(turnos));
 
@@ -215,7 +216,6 @@
       ? 'Ha sido el último turno disponible en este horario.' 
       : `Quedan ${lugaresRestantes} turno(s) disponible(s).`;
 
-    document.getElementById('resultado').classList.add('exito');
     document.getElementById('resultado').style.display = 'block';
     document.getElementById('resultado').innerHTML = `
       <strong>¡Turno reservado con éxito!</strong><br><br>
@@ -227,11 +227,12 @@
       Redirigiendo al comprobante...
     `;
 
-    // Enviar a SheetMonkey y redirigir
+    // Enviar al Google Apps Script (sin recargar página gracias al iframe)
     setTimeout(() => {
-      document.getElementById('sheetmonkey-form').submit();
-    }, 2000);
+      document.getElementById('appscript-form').submit();
+    }, 1500);
 
+    // Redirigir al comprobante
     setTimeout(() => {
       window.location.href = 'comprobante.html';
     }, 3000);
